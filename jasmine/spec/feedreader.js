@@ -32,6 +32,12 @@ $(function() {
      * in the allFeeds object and ensures it has a URL defined
      * and that the URL is not empty.
      */
+    it('has a defined URL', function() {
+      for (const feed of allFeeds) {
+        expect(feed.url).toBeDefined();
+        expect(feed.url.length).not.toBe(0);
+      }
+    });
 
 
     /* TODO: Write a test that loops through each feed
@@ -86,6 +92,12 @@ $(function() {
       loadFeed(0, function() {
         done();
       });
+    });
+
+    it('there is at least one .entry element after loadFeed is called and completed its work', function(done) {
+      var entryNum = document.querySelector('.feed').getElementsByClassName('entry').length;
+      expect(entryNum).toBeGreaterThan(0);
+      done();
     });
 
   });
